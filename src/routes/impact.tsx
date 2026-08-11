@@ -7,6 +7,7 @@ import { ActionLink } from "@/components/common/Action";
 import { ImpactAtlas } from "@/components/maps/ImpactAtlas";
 import { ImpactDashboard } from "@/components/impact/ImpactDashboard";
 import { JourneyTimeline } from "@/components/impact/JourneyTimeline";
+import { CauseActionOutcomeDemo } from "@/components/impact/CauseActionOutcome";
 import { TransparencyGrid } from "@/components/transparency/TransparencyGrid";
 import { StoryCard } from "@/components/stories/StoryCard";
 import { FinalCta } from "@/components/impact/Participation";
@@ -68,6 +69,7 @@ function ImpactPage() {
         </div>
       </section>
 
+      <CauseActionOutcomeDemo />
       <JourneyTimeline />
 
       <section aria-labelledby="impact-reports" className="border-b border-border bg-background">

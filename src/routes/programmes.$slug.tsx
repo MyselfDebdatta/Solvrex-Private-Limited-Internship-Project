@@ -141,33 +141,59 @@ function ProgrammeDetail() {
         </section>
 
         <div className="shell grid gap-14 py-16 md:py-24 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-20">
-          <div className="max-w-2xl">
-            <Reveal>
-              <h2 className="display-lg text-primary">The problem</h2>
-              <p className="mt-5 text-base leading-relaxed text-foreground/85">
+          <div className="max-w-2xl relative">
+            <div className="absolute left-[11px] top-4 bottom-12 w-px bg-border md:left-[15px]" />
+            
+            {/* 1. THE CHALLENGE */}
+            <Reveal className="relative pl-10 md:pl-14 pb-14 md:pb-20">
+              <span className="absolute left-0 top-1.5 size-6 rounded-full border border-primary bg-background grid place-items-center md:size-8 md:top-0 text-xs font-medium text-primary">01</span>
+              <h2 className="eyebrow text-muted-foreground">The Challenge</h2>
+              <p className="mt-5 display-md leading-relaxed text-primary">
                 {programme.problem}
               </p>
             </Reveal>
 
-            <Reveal delay={80} className="mt-14">
-              <h2 className="display-lg text-primary">How the programme works</h2>
-              <ol className="mt-6 space-y-5">
-                {programme.approach.map((step, index) => (
-                  <li key={step} className="flex gap-5 border-t border-border pt-5">
-                    <span className="tabular text-sm text-accent">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+            {/* 2. THE RESPONSE */}
+            <Reveal delay={80} className="relative pl-10 md:pl-14 pb-14 md:pb-20">
+              <span className="absolute left-0 top-1.5 size-6 rounded-full border border-border bg-background grid place-items-center md:size-8 md:top-0 text-xs font-medium text-muted-foreground">02</span>
+              <h2 className="eyebrow text-muted-foreground">The Response</h2>
+              <p className="mt-5 text-base leading-relaxed text-foreground/85">
+                <strong>{programme.tagline}</strong> — {programme.approach[0]}
+              </p>
+            </Reveal>
+
+            {/* 3. THE WORK */}
+            <Reveal delay={120} className="relative pl-10 md:pl-14 pb-14 md:pb-20">
+              <span className="absolute left-0 top-1.5 size-6 rounded-full border border-border bg-background grid place-items-center md:size-8 md:top-0 text-xs font-medium text-muted-foreground">03</span>
+              <h2 className="eyebrow text-muted-foreground">The Work</h2>
+              <ul className="mt-5 space-y-4">
+                {programme.approach.slice(1).map((step) => (
+                  <li key={step} className="flex gap-4">
+                    <div className="size-1.5 rounded-full bg-accent mt-2 shrink-0" />
                     <p className="text-sm leading-relaxed text-foreground/85">{step}</p>
                   </li>
                 ))}
-              </ol>
+              </ul>
             </Reveal>
 
-            <Reveal delay={120} className="mt-14">
-              <h2 className="display-lg text-primary">What we measure</h2>
+            {/* 4. THE OUTCOME */}
+            <Reveal delay={160} className="relative pl-10 md:pl-14 pb-14 md:pb-20">
+              <span className="absolute left-0 top-1.5 size-6 rounded-full border border-border bg-background grid place-items-center md:size-8 md:top-0 text-xs font-medium text-muted-foreground">04</span>
+              <h2 className="eyebrow text-muted-foreground">The Outcome</h2>
+              <div className="mt-5 border border-border bg-secondary/45 p-6">
+                <p className="text-sm leading-relaxed text-foreground/85">
+                  Currently serving <strong className="text-primary">{programme.beneficiaries}</strong> across {programme.geography.length} regions. We are at <strong className="text-primary">{programme.progress}%</strong> of our intended goal for the current cycle.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* 5. THE INDICATOR */}
+            <Reveal delay={200} className="relative pl-10 md:pl-14">
+              <span className="absolute left-0 top-1.5 size-6 rounded-full border border-accent bg-background grid place-items-center md:size-8 md:top-0 text-xs font-medium text-accent">05</span>
+              <h2 className="eyebrow text-accent">The Indicator</h2>
               <dl className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2">
                 {programme.metrics.map((metric) => (
-                  <div key={metric.label} className="bg-background p-6">
+                  <div key={metric.label} className="bg-background p-6 transition-colors hover:border-accent">
                     <dt className="text-sm text-muted-foreground">{metric.label}</dt>
                     <dd className="display-md tabular mt-2 text-primary">{metric.value}</dd>
                   </div>

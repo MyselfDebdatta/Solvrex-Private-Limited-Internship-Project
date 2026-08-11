@@ -97,30 +97,35 @@ function StoryDetail() {
         />
 
         <div className="shell-narrow py-16 md:py-24">
-          <ol className="grid gap-px border border-border bg-border sm:grid-cols-3">
+          <div className="space-y-16">
             {[
-              { label: "Before", value: story.before },
-              { label: "Intervention", value: story.intervention },
-              { label: "Today", value: story.today },
-            ].map((phase, index) => (
-              <li key={phase.label} className="bg-background p-6">
-                <p className="eyebrow text-accent">
-                  {String(index + 1).padStart(2, "0")} · {phase.label}
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-foreground/85">{phase.value}</p>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-12 space-y-6 text-base leading-relaxed text-foreground/85">
-            {story.body.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+              { label: "Context", value: story.body[0] },
+              { label: "The Challenge", value: story.body[1] },
+              { label: "The Turning Point", value: story.body[2] },
+              { label: "The Change", value: story.body[3] },
+            ].map((section, index) => (
+              <Reveal key={section.label} delay={index * 100} className="relative md:grid md:grid-cols-[10rem_1fr] md:gap-12 lg:grid-cols-[14rem_1fr]">
+                {/* Desktop connecting line */}
+                {index < 3 && <div className="hidden md:block absolute left-[1.1875rem] top-12 bottom-[-4rem] w-px bg-border" />}
+                
+                <div className="flex items-center gap-4 md:items-start md:gap-6">
+                   <div className="size-10 rounded-full border border-primary text-primary flex items-center justify-center text-sm font-medium bg-background relative z-10 shrink-0">
+                      {String(index + 1).padStart(2, '0')}
+                   </div>
+                   <h3 className="eyebrow text-accent md:mt-2.5">{section.label}</h3>
+                </div>
+                
+                <div className="mt-6 md:mt-1.5 border-l-2 border-border pl-6 md:border-none md:pl-0">
+                  <p className="text-[1.125rem] leading-relaxed text-primary/90">{section.value}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
 
-          <blockquote className="mt-12 border-l-2 border-accent pl-6">
-            <p className="display-lg text-primary">“{story.quote}”</p>
-            <footer className="mt-4 text-sm text-muted-foreground">{story.quoteAttribution}</footer>
+          <blockquote className="mt-20 border-l-4 border-accent bg-secondary/45 p-8 md:p-12 relative overflow-hidden">
+            <span className="absolute -top-4 -left-4 text-9xl text-border/50 font-serif leading-none" aria-hidden="true">“</span>
+            <p className="display-lg text-primary relative z-10">“{story.quote}”</p>
+            <footer className="mt-8 text-sm text-muted-foreground font-medium relative z-10">— {story.quoteAttribution}</footer>
           </blockquote>
 
           {programme ? (
