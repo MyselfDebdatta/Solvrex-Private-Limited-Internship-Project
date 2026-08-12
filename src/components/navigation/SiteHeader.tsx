@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { cn } from "@/lib/utils";
 import { useScrolled } from "@/lib/motion";
@@ -134,7 +135,7 @@ export function SiteHeader() {
       </header>
 
       {/* Full-screen mobile drawer */}
-      {open && (
+      {open && typeof document !== "undefined" && createPortal(
         <div
           id="mobile-navigation"
           ref={panelRef}
@@ -199,7 +200,8 @@ export function SiteHeader() {
               </ActionLink>
             </div>
           </nav>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
