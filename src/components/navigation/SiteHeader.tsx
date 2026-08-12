@@ -58,16 +58,17 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        isTransparent
-          ? "border-b border-transparent bg-background/0"
-          : "border-b border-border bg-background/92 backdrop-blur-md",
-      )}
-    >
-      <div
+    <>
+      <header
         className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+          isTransparent && !open
+            ? "border-b border-transparent bg-background/0"
+            : "border-b border-border bg-background/92 backdrop-blur-md",
+        )}
+      >
+        <div
+          className={cn(
           "shell grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 transition-all duration-500",
           scrolled ? "h-16 lg:h-18" : "h-20 lg:h-24",
         )}
@@ -129,14 +130,15 @@ export function SiteHeader() {
             <Menu aria-hidden="true" className="size-5" />
           </button>
         </div>
-      </div>
+        </div>
+      </header>
 
       {/* Full-screen mobile drawer */}
       <div
         id="mobile-navigation"
         ref={panelRef}
         hidden={!open}
-        className="fixed inset-0 z-50 flex flex-col bg-primary text-primary-foreground lg:hidden"
+        className="fixed inset-0 z-[60] flex flex-col bg-primary text-primary-foreground lg:hidden"
       >
         <div className="shell flex h-20 items-center justify-between">
           <Logo tone="inverse" />
@@ -191,6 +193,6 @@ export function SiteHeader() {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 }
