@@ -1,0 +1,1 @@
+import{o as e}from"./useStore-DSvvz5pB.js";import{r as t}from"./Action-BeF1wDsq.js";import{h as n}from"./index-BkanY7Dk.js";var r=e();function i({children:e,className:i,delay:a=0,as:o=`div`}){let{ref:s,inView:c}=n();return(0,r.jsx)(o,{ref:s,className:t(`reveal`,c&&`reveal-in`,i),style:{transitionDelay:`${a}ms`},children:e})}export{i as t};

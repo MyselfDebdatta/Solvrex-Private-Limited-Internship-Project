@@ -1,0 +1,1 @@
+var e=e=>new Intl.NumberFormat(`en-IN`).format(e),t=e=>new Intl.NumberFormat(`en-IN`,{style:`currency`,currency:`INR`,maximumFractionDigits:0}).format(e),n=e=>Number.isInteger(e)?Math.round(e).toString():e.toFixed(1);export{t as n,n as r,e as t};
